@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_delivery_ui/models/restaurant.dart';
-import 'package:flutter_food_delivery_ui/screens/restaurant_screen.dart';
+import 'package:flutter_food_delivery_ui/screens/screens.dart';
 import 'package:flutter_food_delivery_ui/widgets/widgets.dart';
 import '../data/data.dart';
 
@@ -22,7 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Food Delivery'),
         actions: [
           TextButton(
-            onPressed: () => print('Add to cart'),
+            onPressed: () =>
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+              return CartScreen();
+            })),
             child: Text(
               'Cart (${currentUser.cart != null ? currentUser.cart!.length : 0})',
               style: TextStyle(color: Colors.white, fontSize: 20.0),
