@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_ui/widgets/widgets.dart';
 
+import 'screen.dart';
+
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,12 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 40.0),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((_) => HomeScreen()),
+                  ),
+                ),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 60.0),
                   height: 45.0,
