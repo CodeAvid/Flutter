@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class BarChart extends StatelessWidget {
@@ -82,10 +83,10 @@ class BarChart extends StatelessWidget {
                   label: 'Fr',
                   amountSpent: expenses[5],
                   mostExpensive: mostExpensive),
-              // Bar(
-              //     label: 'Sa',
-              //     amountSpent: expenses[6],
-              //     mostExpensive: mostExpensive),
+              Bar(
+                  label: 'Sa',
+                  amountSpent: expenses[6],
+                  mostExpensive: mostExpensive),
               //TODO: Fix Bar Chart Rendering Problem
             ],
           ),
@@ -110,26 +111,34 @@ class Bar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final barHeight = amountSpent / mostExpensive * _maxBarHeight;
-    return Column(
-      children: [
-        Text(
-          '\$${amountSpent.toStringAsFixed(2)}',
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-        SizedBox(height: 6.0),
-        Container(
-          height: barHeight,
-          width: 18.0,
-          decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(6.0)),
-        ),
-        SizedBox(height: 8.0),
-        Text(
-          label,
-          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
-        ),
-      ],
+    return Container(
+      constraints: BoxConstraints(maxWidth: double.infinity),
+      child: Column(
+        children: [
+          AutoSizeText(
+            '\$${amountSpent.toStringAsFixed(2)}',
+            // presetFontSizes: [12.0, 18.0, 20.0],
+            minFontSize: 12,
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 6.0),
+          Container(
+            height: barHeight,
+            width: 14.0,
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(6.0)),
+          ),
+          SizedBox(height: 8.0),
+          AutoSizeText(
+            label,
+            // presetFontSizes: [12.0, 18.0, 20.0],
+            minFontSize: 12,
+            wrapWords: true,
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
     );
   }
 }
