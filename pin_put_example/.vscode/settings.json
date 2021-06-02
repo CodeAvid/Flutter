@@ -1,0 +1,10 @@
+  {
+    "rest-client.environmentVariables": {
+      "sandbox": {
+        "baseUrl": "https://api.unsplash.com/photos/",
+        "clientID": "TOCnwUYSNssEFuqTc-nrr9W50ONTeLfn1G8W4dyD_to",
+        "page": "1"
+      },
+      "production": {}
+  }
+}
