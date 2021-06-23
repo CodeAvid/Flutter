@@ -11,13 +11,13 @@ class APIService {
   APIService(this.api);
   final API api;
 
-  Future<List<Photos>> fetchPhotos(PageIndex index) async {
+  Future<List<Photo>> fetchPhotos(PageIndex index) async {
     final response = await http.get(api.pageUri(index));
     if (response.statusCode == 200) {
       String content = response.body;
       List collecton = json.decode(content);
-      final List<Photos> _data =
-          collecton.map((json) => Photos.fromJson(json)).toList();
+      final List<Photo> _data =
+          collecton.map((json) => Photo.fromJson(json)).toList();
       return _data;
     }
     print(
@@ -47,8 +47,8 @@ class APIService {
 // // Future<int> getEndpointData(
 //     {@required String acessToken, @required Endpoint endpoint}) {}
 
-// void main() async {
+// main() async {
 //   final _apiService = APIService(API.sandbox());
-//   List result = await _apiService.fetchContact();
+//   List result = await _apiService.fetchPhotos(PageIndex.page1);
 //   print(result);
 // }

@@ -1,37 +1,38 @@
 // To parse this JSON data, do
-
-// final photos = photosFromJson(jsonString);
+//
+//     final photo = photoFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+List<Photo> photoFromJson(String str) =>
+    List<Photo>.from(json.decode(str).map((x) => Photo.fromJson(x)));
 
-List<Photos> photosFromJson(String str) =>
-    List<Photos>.from(json.decode(str).map((x) => Photos.fromJson(x)));
-
-String photosToJson(List<Photos> data) =>
+String photoToJson(List<Photo> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Photos {
-  Photos({
-    @required this.id,
-    @required this.color,
-    @required this.description,
-    @required this.urls,
-    @required this.likes,
-    @required this.user,
+class Photo {
+  Photo({
+    this.id,
+    this.color,
+    this.description,
+    this.urls,
+    this.likes,
+    this.user,
   });
 
   final String id;
 
   final String color;
+
   final String description;
+
   final Urls urls;
 
   final int likes;
+
   final User user;
 
-  factory Photos.fromJson(Map<String, dynamic> json) => Photos(
+  factory Photo.fromJson(Map<String, dynamic> json) => Photo(
         id: json["id"],
         color: json["color"],
         description: json["description"] == null ? null : json["description"],
@@ -51,31 +52,35 @@ class Photos {
 }
 
 class User {
-  String id;
-  String username;
-  String name;
-  String firstName;
-  String lastName;
-  String bio;
-  String location;
-  ProfileImage profileImage;
-  int totalCollections;
-  int totalLikes;
-  int totalPhotos;
-
   User({
-    @required this.id,
-    @required this.username,
-    @required this.name,
-    @required this.firstName,
-    @required this.lastName,
-    @required this.bio,
-    @required this.location,
-    @required this.profileImage,
-    @required this.totalCollections,
-    @required this.totalLikes,
-    @required this.totalPhotos,
+    this.id,
+    this.username,
+    this.name,
+    this.firstName,
+    this.lastName,
+    this.bio,
+    this.location,
+    this.profileImage,
+    this.totalCollections,
+    this.totalLikes,
+    this.totalPhotos,
   });
+
+  final String id;
+
+  final String username;
+  final String name;
+  final String firstName;
+  final String lastName;
+
+  final String bio;
+  final String location;
+
+  final ProfileImage profileImage;
+
+  final int totalCollections;
+  final int totalLikes;
+  final int totalPhotos;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
@@ -107,11 +112,11 @@ class User {
 }
 
 class ProfileImage {
-  String medium;
-
   ProfileImage({
-    @required this.medium,
+    this.medium,
   });
+
+  final String medium;
 
   factory ProfileImage.fromJson(Map<String, dynamic> json) => ProfileImage(
         medium: json["medium"],
@@ -120,95 +125,20 @@ class ProfileImage {
   Map<String, dynamic> toJson() => {
         "medium": medium,
       };
-
-  ProfileImage copyWith({
-    String medium,
-  }) {
-    return ProfileImage(
-      medium: medium ?? this.medium,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'medium': medium,
-    };
-  }
-
-  factory ProfileImage.fromMap(Map<String, dynamic> map) {
-    return ProfileImage(
-      medium: map['medium'],
-    );
-  }
-
-  // String toJson() => json.encode(toMap());
-
-  // factory ProfileImage.fromJson(String source) =>
-  // ProfileImage.fromMap(json.decode(source));
-
-  @override
-  String toString() => 'ProfileImage(medium: $medium)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ProfileImage && other.medium == medium;
-  }
-
-  @override
-  int get hashCode => medium.hashCode;
 }
 
 class Urls {
-  String full;
-
   Urls({
-    @required this.full,
+    this.raw,
   });
 
+  final String raw;
+
   factory Urls.fromJson(Map<String, dynamic> json) => Urls(
-        full: json["full"],
+        raw: json["raw"],
       );
 
   Map<String, dynamic> toJson() => {
-        "full": full,
+        "raw": raw,
       };
-
-  Urls copyWith({
-    String full,
-  }) {
-    return Urls(
-      full: full ?? this.full,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'full': full,
-    };
-  }
-
-  factory Urls.fromMap(Map<String, dynamic> map) {
-    return Urls(
-      full: map['full'],
-    );
-  }
-
-  // String toJson() => json.encode(toMap());
-
-  // factory Urls.fromJson(String source) => Urls.fromMap(json.decode(source));
-
-  @override
-  String toString() => 'Urls(full: $full)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Urls && other.full == full;
-  }
-
-  @override
-  int get hashCode => full.hashCode;
 }

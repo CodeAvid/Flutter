@@ -21,7 +21,7 @@ class ContactManager {
   ContactManager() {
     contactListView.listen((list) => _contactCounter.add(list.length));
   }
-  Stream<List<Photos>> get photoList async* {
+  Stream<List<Photo>> get photoList async* {
     yield await _apiService.fetchPhotos(PageIndex.page1);
   }
 }

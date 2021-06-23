@@ -12,7 +12,7 @@ class PhotoScreen extends StatefulWidget {
 
 class _PhotoScreenState extends State<PhotoScreen> {
   final ContactManager manager = ContactManager();
-  Future<List<Photos>> photos;
+  Future<List<Photo>> photos;
 
   @override
   void initState() {
@@ -25,8 +25,8 @@ class _PhotoScreenState extends State<PhotoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: FutureBuilder<List<Photos>>(
-        future: photos,
+      body: StreamBuilder<List<Photo>>(
+        stream: manager.photoList,
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -45,7 +45,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
                 return ListView.builder(
                   itemCount: photos.length,
                   itemBuilder: (BuildContext context, int index) {
-                    Photos photo = photos[index];
+                    Photo photo = photos[index];
                     return Container(
                       margin: const EdgeInsets.all(20.0),
                       height: 200.0,
@@ -54,7 +54,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: "${photo.urls.full}",
+                        imageUrl: "${photo.urls.raw}",
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),

@@ -45,10 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  category.name,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   category.name,
+                //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                // ),
                 Text(
                   '\$${(amountLeft < 0 ? 0 : amountLeft).toStringAsFixed(1)}/\$${category.maxAmount.toStringAsFixed(2)}',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

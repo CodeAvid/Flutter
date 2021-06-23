@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<List<Photos>> photos;
+  Future<List<Photo>> photos;
 
   void _incrementCounter() {
     setState(() {});

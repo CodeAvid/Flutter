@@ -32,14 +32,14 @@ class PhotoService {
     PageIndex.page3: '3',
   };
 
-  static Future<List<Photos>> fetchPhotos(PageIndex index) async {
+  static Future<List<Photo>> fetchPhotos(PageIndex index) async {
     final response = await http.get(url());
     print(response.statusCode);
     if (response.statusCode == 200) {
       String content = response.body;
       List collecton = json.decode(content);
-      final List<Photos> _data =
-          collecton.map((json) => Photos.fromJson(json)).toList();
+      final List<Photo> _data =
+          collecton.map((json) => Photo.fromJson(json)).toList();
       return _data;
     }
     print(
