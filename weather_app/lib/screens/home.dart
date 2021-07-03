@@ -50,8 +50,10 @@ class _HomeState extends State<Home> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('asset/images/tree.jpg'),
-                      ),
+                          image: AssetImage(
+                            'asset/images/tree.jpg',
+                          ),
+                          fit: BoxFit.cover),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
